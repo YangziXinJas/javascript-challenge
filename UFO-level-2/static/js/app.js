@@ -57,17 +57,25 @@ function runEnter() {
     //var filteredData = tableData.filter(d => d.datetime === inputValue);
     
     var filteredData = tableData.filter(function(r){
-        r.datetime === inputDatetime;
-        r.city === inputCity;
-        r.state === inputState;
-        r.shape === inputShape;
-        r.duration === inputDuration;
-        r.country === inputCountry;
-        const array = [r.datetime, r.city, r.state, r.shape, r.duration, r.country]
-        for (i in filteredData.length()){
-                return array[i]
+        for (var i = 0; i < 6; i++ ){
+            if (i === 0){
+                if (inputDatetime !== ""){
+                    r.datetime === inputDatetime
+                }
+                
             }
-    })
+            if (i === 1){
+                if(inputCity !== ""){
+                    r.city === inputCity
+                }
+            }
+
+            
+        }
+        return r.datetime === inputDatetime && r.city === inputCity 
+//         && r.state === inputState && r.shape === inputShape &&
+//  r.duration === inputDuration && r.country === inputCountry;
+    })   
     console.log(filteredData);  
     tbody.html("");
     filteredData.forEach(function(results) {
@@ -84,9 +92,9 @@ function runEnter() {
         console.log(results)
     });
     console.log(filteredData)
+
     
-    
-};  
+}  
 
 var clear = d3.select("#clear-btn");
 clear.on("click", runClear);
